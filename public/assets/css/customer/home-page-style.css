@@ -1,0 +1,21 @@
+/** home page search box select2 styles **/
+.select2-container--default .select2-selection--single{
+    height: 40px !important;
+    border-radius: unset !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    display: none !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height:37px !important;
+}
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
+    background-color: #FF324D !important;
+}
+.search_btn3:hover{
+    background-color: unset !important;
+}
+.search_btn3{
+    background-color: rgba(255,255,255,0.1) !important;
+    color: #FF324D !important;
+}

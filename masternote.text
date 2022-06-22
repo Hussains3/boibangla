@@ -1,0 +1,65 @@
+Links
+-----------------
+https://codeanddeploy.com/blog/laravel/laravel-8-user-roles-and-permissions-step-by-step-tutorial#kjNAJj9MlMLUcT2n1u7o2VOaO
+https://github.com/darryldecode/laravelshoppingcart
+
+Packages
+------------------
+composer require spatie/laravel-permission
+composer require laravelcollective/html
+composer require laravel/socialite
+composer require barryvdh/laravel-debugbar --dev
+composer require "darryldecode/cart"
+
+FTP
+------------
+Host:ftp.boibangla.com.bd
+User:devsabbir@boibangla.com.bd
+Password:Rn932P70lxCX
+Port:21
+
+
+
+Rn932P70lxCX
+
+Models
+--------------------
+User, Category, Newsletter, Publication, Discount, Author, Book, SubCategory, SubCategoryBook, Country, RecentTransaction, ShurjoPayPayment, ComposeNewsLetter, Media, ProcessLog, Query, Setting, Story, Tag, WalletRequest, Address, Language, LanguageBook, CountryBook, CustomerAddress,PublicationBook, CategoryBook, AuthorBook, Order, OrderProcessing, OrderBook, Review, BookTag, PublisherPublication, Affiliation, AffiliationItem, AffiliationLink
+
+Seeder
+------------
+php artisan db:wipe
+php artisan migrate
+php artisan permission:create-permission-routes
+php artisan db:seed
+
+
+
+Amar Pay
+----------------------
+Laravel API Link : https://github.com/akilmozumder/laravel-aamarpay-integration
+
+
+
+Test credentials:
+
+----------------------------------------------
+
+Merchant ID: aamarpaytest
+
+Store ID: aamarpaytest
+
+Signature key: dbb74894e82415a2f7ff0ec3a97e4183
+
+
+
+# affiliation
+
+Email
+Book filter
+pdf
+cuppon
+
+Discount
+
+
