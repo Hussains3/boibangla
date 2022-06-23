@@ -83,6 +83,7 @@ class CategoryController extends Controller
         }
     }
 
+    
     /**
      * This function returns all the categories by default active
      * @param Request $request

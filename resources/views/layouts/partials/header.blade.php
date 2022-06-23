@@ -179,20 +179,20 @@
                         </div>
                     </li>
                     <li id="ctl00_linewrelease" class="cat-a03"><a class="toplevel oneline"
-                            href="{{ route('showCategory', 'new_collection') }}">নতুন কালেকশন</a>
+                            href="{{ route('showCategory', 'new-collection') }}">নতুন কালেকশন</a>
                     </li>
                     <li id="ctl00_lipreorder" class="cat-a04"><a class="toplevel"
-                            href="{{ route('showCategory', 'pre_order') }}">প্রি-অর্ডার</a> </li>
+                            href="{{ route('showCategory', 'pre-order') }}">প্রি-অর্ডার</a> </li>
                     <li id="ctl00_libestseller" class="cat-a05"><a class="toplevel"
-                            href="{{ route('showCategory', 'best_seller') }}">বেস্টসেলার</a> </li>
+                            href="{{ route('showCategory', 'best-seller') }}">বেস্টসেলার</a> </li>
                     <li id="ctl00_liTextBook" class="cat-a06"><a class="toplevel oneline"
-                            href="{{ route('showCategory', 'academic_book') }}">একাডেমিক বই</a>
+                            href="{{ route('showCategory', 'academic-book') }}">একাডেমিক বই</a>
                     </li>
                     <li id="ctl00_liAW" class="cat-a07"><a class="toplevel oneline"
-                            href="{{ route('showCategory', 'award_wining') }}">পুরষ্কারজয়ী বই</a>
+                            href="{{ route('showCategory', 'award-wining') }}">পুরষ্কারজয়ী বই</a>
                     </li>
                     <li id="ctl00_liAW" class="cat-a07"><a class="toplevel oneline"
-                            href="{{ route('showCategory', 'islamic_book') }}">ইসলামিক বই</a>
+                            href="{{ route('showCategory', 'islamic-book') }}">ইসলামিক বই</a>
                     </li>
                     <li id="ctl00_liRequestBook" class="cat-a07"><a class="toplevel oneline"
                             href="{{ route('cfeaturedAuthors') }}">লেখক</a>

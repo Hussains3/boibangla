@@ -83,7 +83,7 @@
                             <div id="tabs-1" class="tabs_inner_base ui-tabs-panel ui-corner-bottom ui-widget-content"
                                 aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="false">
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/view-books/1/bestsellers">See All</a></span>
+                                    <span class="view-more"><a href="/categories/show/best-seller">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
@@ -439,8 +439,8 @@
                                         @foreach ($categories as $category)
                                             <a href="{{ route('showCategory', $category->category_slug) }}"
                                                 class="owl-item">
-                                                <div class="cate-square d-flex justify-content-center align-items-center">
-                                                    <p>{{ $category->category }}</p>
+                                                <div class="cate-square d-flex justify-content-center align-items-center text-center">
+                                                    <p class="text-center">{{ $category->category }}</p>
                                                 </div>
                                             </a>
                                         @endforeach
