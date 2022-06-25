@@ -60,6 +60,9 @@
 </head>
 
 <body class="padtpfix">
+    {{-- Facebook Messenger --}}
+    @include('layouts.partials.fbmessanger')
+
 
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous"
@@ -83,6 +86,8 @@
 
     {{-- footer --}}
     @include('layouts.partials.footer')
+
+
 
 
     <img id="ctl00_Footer_imgCacheClear" height="1" width="1" style="display:none">
