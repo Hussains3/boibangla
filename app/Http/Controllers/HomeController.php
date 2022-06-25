@@ -103,7 +103,7 @@ class HomeController extends Controller
     public function faq(){return view('faq');}
     public function getQuote() {return view('quote');}
     public function contactUs(){return view('contact-us');}
-    public function customerbookrequest(){return view('bookRequest');}
+    public function customerbookrequest(){return view('bookrequest');}
 
 
     public function sitemap(){
