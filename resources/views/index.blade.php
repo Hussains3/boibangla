@@ -267,12 +267,13 @@
 
 
 
+
                 {{-- Category --}}
                 <div class="d-flex justify-content-between" style="padding: 0 5px;">
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">অতিরিক্ত ছাড়</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">প্যারেন্টিং</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">সদ্য প্রকাশিত বই</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">ইংরেজি শেখার বই</a>
                 </div>
 
                 {{-- islamic/other/translation --}}
@@ -455,13 +456,12 @@
                         </div>
                     </div>
                 </div>
-
                 {{-- Category --}}
                 <div class="d-flex justify-content-between" style="padding: 0 5px;">
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ক্যাটেগরী</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">রাজনৈতিক</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">আত্ম-উন্নয়ন,মোটিভেশনাল</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">পশ্চিমবঙ্গের বই</a>
+                    <a class="btn-red mt-1" href="" rel="nofollow">কম্পিউটার ও ফ্রিল্যান্সিং</a>
                 </div>
 
 
@@ -523,6 +523,287 @@
                         <div class="tabsdetailsfull">
                             {{-- Series Books --}}
                             <div id="tabs-12" aria-labelledby="ui-id-12" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- ছোটদের বই --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-13" aria-labelledby="ui-id-13" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-13" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-13">ছোটদের বই</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-13" aria-labelledby="ui-id-13" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- সমকালীন উপন্যাস --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-14" aria-labelledby="ui-id-14" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-14" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-14">সমকালীন উপন্যাস</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-14" aria-labelledby="ui-id-14" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- রাজনৈতিক বই --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-15" aria-labelledby="ui-id-15" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-15" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-15">রাজনৈতিক বই</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-15" aria-labelledby="ui-id-15" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- বিসিএস এর জন্য --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-16" aria-labelledby="ui-id-16" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-16" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-16">বিসিএস এর জন্য</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-16" aria-labelledby="ui-id-16" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- বিসিএস এর জন্য --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-17" aria-labelledby="ui-id-17" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-17" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-17">বিসিএস এর জন্য</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-17" aria-labelledby="ui-id-17" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- গণিত,বিজ্ঞান ও প্রযুক্তির বই --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-18" aria-labelledby="ui-id-18" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-18" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-18">গণিত,বিজ্ঞান ও প্রযুক্তির বই</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-18" aria-labelledby="ui-id-18" role="tabpanel"
+                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                <div class="books-summary">
+                                    <span class="view-more"><a href="">See All</a></span>
+                                    <div class="clearfloat"></div>
+                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
+                                                @foreach ($siriesBook as $book)
+                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
+                                                        @include('layouts.partials.bookItem')
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next disabled"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- ভর্তি পরীক্ষার প্রস্তুতি --}}
+                <div class=" homepagetabs-base book-slide">
+                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+                        <ul role="tablist"
+                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                            <li role="tab" tabindex="0"
+                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
+                                aria-controls="tabs-20" aria-labelledby="ui-id-20" aria-selected="true"
+                                aria-expanded="true"><a href="#tabs-20" role="presentation" tabindex="-1"
+                                    class="ui-tabs-anchor" id="ui-id-20">ভর্তি পরীক্ষার প্রস্তুতি</a></li>
+                        </ul>
+                        <div class="tabsdetailsfull">
+                            {{-- Series Books --}}
+                            <div id="tabs-20" aria-labelledby="ui-id-20" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
                                 <div class="books-summary">
                                     <span class="view-more"><a href="">See All</a></span>
@@ -653,7 +934,7 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#tabs-first, #tabs-second,#tabs-third").tabs();
+            $("#tabs-first, #tabs-second, #tabs-third").tabs();
 
             $(".owl-one").owlCarousel({
                 items: 1,
@@ -683,7 +964,6 @@
                     }
                 }
             });
-
             $('.owl-two').owlCarousel({
                 items: 4,
                 loop: true,
@@ -710,7 +990,6 @@
                 },
 
             });
-
             $('.owl-three').owlCarousel({
                 items: 4,
                 loop: true,
