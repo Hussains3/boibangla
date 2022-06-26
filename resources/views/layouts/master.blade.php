@@ -64,10 +64,6 @@
     @include('layouts.partials.fbmessanger')
 
 
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0&appId=418455563380290&autoLogAppEvents=1"
-        nonce="7bpliRyK"></script>
     {{-- site wrapper --}}
     <div id="site-wrapper">
         {{-- header --}}
