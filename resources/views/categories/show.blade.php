@@ -53,3 +53,14 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+<script>
+    var filterFormurl = "{{ route('showCategory', $category->category_slug) }}";
+    $("#filterbtn").click(function (e) {
+        e.preventDefault();
+        $("form#bookFilterForm").attr('action', filterFormurl);
+        $("form#bookFilterForm").submit();
+    });
+</script>
+@endsection

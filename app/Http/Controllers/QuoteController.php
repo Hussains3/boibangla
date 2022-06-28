@@ -6,6 +6,7 @@ use App\Models\Quote;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Requests\UpdateQuoteRequest;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Support\Facades\Config;
 
 class QuoteController extends Controller
 {
@@ -52,7 +53,7 @@ class QuoteController extends Controller
         if ($request->file('book_list')) {
             $image = $request->file('book_list');
             $image_full_name = $org.time().'_'.$name.'_'.$image->getClientOriginalName();
-            $upload_path = 'booklist/';
+            $upload_path = Config::get('constants.paths.booklist');
             $image_url = $upload_path.$image_full_name;
             $success = $image->move($upload_path, $image_full_name);
             $quote->book_list = $image_url;

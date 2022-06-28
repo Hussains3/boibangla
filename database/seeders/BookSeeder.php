@@ -29,6 +29,7 @@ class BookSeeder extends Seeder
                 'number_of_pages'=> $faker->randomNumber(3,true),
                 'regular_price'=> $regularPrice,
                 'sale_price'=> $salePrice,
+                'discount' => ($salePrice * 100)/$regularPrice,
                 'stock'=> $faker->randomNumber(4,true),
                 'unit'=> 'Pcs',
                 'book_image'=> 'asset/images/book/dummy/image.jpg',
@@ -42,6 +43,44 @@ class BookSeeder extends Seeder
                 'book_display'=> $faker->randomElement(['1','2']),
                 'status'=> 1,
             ]);
+
+            //Book category
+            $categoriesIDs = DB::table('categories')->pluck('id');
+            $cid = $faker->randomElement($categoriesIDs);
+            DB::table('category_books')->insert([
+                'category_id' => $faker->randomElement($categoriesIDs),
+                'book_id' => $i+1,
+                ]);
+            //Book Sub category
+            $publishersIDs = DB::table('sub_categories')->where('category_id',$cid)->pluck('id');
+            DB::table('publication_books')->insert([
+                'book_id' => $i+1,
+                'publication_id' => $faker->randomElement($publishersIDs),
+            ]);
+            //Book Author
+            $authorsIDs = DB::table('authors')->pluck('id');
+            DB::table('author_books')->insert([
+                'author_id' => $faker->randomElement($authorsIDs),
+                'book_id' => $i+1,
+                ]);
+            //Book Publication
+            $publishersIDs = DB::table('publications')->pluck('id');
+            DB::table('publication_books')->insert([
+                'book_id' => $i+1,
+                'publication_id' => $faker->randomElement($publishersIDs),
+            ]);
+            //Book Country
+            $countriesIDs = DB::table('countries')->pluck('id');
+            DB::table('country_books')->insert([
+                'book_id' => $i+1,
+                'country_id' => $faker->randomElement($countriesIDs),
+                ]);
+            //Book Language
+            $languagesIDs = DB::table('languages')->pluck('id');
+            DB::table('language_books')->insert([
+                'book_id' => $i+1,
+                'language_id' => $faker->randomElement($languagesIDs),
+                ]);
 
         }
     }

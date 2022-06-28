@@ -129,9 +129,7 @@
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 
-    <!-- yield script-->
-    @yield('script')
-    <!-- yield script end-->
+
 
     <script>
         $(document).ready(function() {
@@ -190,6 +188,9 @@
             e.preventDefault();
         });
     </script>
+    <!-- yield script-->
+    @yield('script')
+    <!-- yield script end-->
 </body>
 
 </html>

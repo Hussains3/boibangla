@@ -31,7 +31,7 @@
             <div class="product" id="listSearchResult">
                 <div class="grid-view">
                     <ul class="listing-grid personas">
-                        @forelse ($author->books as $book)
+                        @forelse ($books as $book)
                             @include('layouts.partials.bookItem')
                         @empty
                             <p>No Book Found.</p>
@@ -62,5 +62,12 @@
                 $(this).remove();
             });
         });
+
+    var filterFormurl = "{{ route('cAuthorBooks', $author->slug) }}";
+    $("#filterbtn").click(function (e) {
+        e.preventDefault();
+        $("form#bookFilterForm").attr('action', filterFormurl);
+        $("form#bookFilterForm").submit();
+    });
     </script>
 @endsection

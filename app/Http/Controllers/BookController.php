@@ -673,6 +673,7 @@ class BookController extends Controller
     }
 
 
+    
     /**
      * This function uploads 1nd book image
      * @param $bookRequest

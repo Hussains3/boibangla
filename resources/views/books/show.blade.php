@@ -341,8 +341,9 @@
         <div class="top-selling">
             <div class="ts-grid">
                 @forelse ($simillarBooks as $book)
-                    @include('layouts.partials.gridmainView')
+                    @include('layouts.partials.bookItem')
                 @empty
+
                 @endforelse
             </div>
         </div>

@@ -124,8 +124,8 @@ class HomeController extends Controller
     public function fileDownload(Request $request)
     {
         // return $request;
-        $filePath = public_path($request->file_url);
-        return response()->download($filePath);
+        // $filePath = public_path($request->file_url);
+        return response()->download($request->file_url);
     }
 
 

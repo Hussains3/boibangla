@@ -1,7 +1,5 @@
 <!-- The Modal -->
 <div id="readModal" class="modal " height="70vh">
-
-
     <!-- Modal content -->
     <div class="modal-content" >
         <div class="d-flex justify-content-end"><span id="readModalClose" class="btn-red">&times;</span></div>
