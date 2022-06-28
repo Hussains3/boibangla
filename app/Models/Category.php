@@ -70,7 +70,17 @@ class Category extends Model
            'description' => $categoryRequest->description,
            'discount' => $categoryRequest->discount,
        ];
-       return self::updateOrCreate(['id' => $categoryRequest->editId],$categoryData);
+
+       $categoryUpdateCreate = self::updateOrCreate(['id' => $categoryRequest->editId],$categoryData);
+
+       if ( $categoryRequest->editId) {
+        $category = Category::find($categoryRequest->editId);
+        foreach ($category->books as $book) {
+            Book::setSellPrice($book->id);
+        }
+       }
+       return $categoryUpdateCreate;
+
    }
 
     /**
@@ -121,7 +131,7 @@ class Category extends Model
         return $this->hasMany(SubCategory::class,'category_id','id');
     }
 
-    
+
 
     public function books()
     {

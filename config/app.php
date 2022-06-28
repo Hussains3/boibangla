@@ -164,8 +164,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Casperlaitw\LaravelFbMessenger\LaravelFbMessengerServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
+        // Casperlaitw\LaravelFbMessenger\LaravelFbMessengerServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -234,8 +234,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
-        'Menu' => Casperlaitw\LaravelFbMessenger\Facades\MessengerMenu::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+        // 'Menu' => Casperlaitw\LaravelFbMessenger\Facades\MessengerMenu::class,
 
     ],
 

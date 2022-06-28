@@ -67,7 +67,16 @@ class Author extends Model
            'description' => $authorRequest->description,
            'discount' => $authorRequest->discount
        ];
-       return self::updateOrCreate(['id' => $authorRequest->editId],$authorData);
+
+       $updateOrCreateAuthore  = self::updateOrCreate(['id' => $authorRequest->editId],$authorData);
+
+       if ( $authorRequest->editId) {
+        $auhor = Author::find($authorRequest->editId);
+        foreach ($auhor->books as $book) {
+            Book::setSellPrice($book->id);
+        }
+       }
+       return $updateOrCreateAuthore ;
    }
 
     /**
@@ -107,9 +116,14 @@ class Author extends Model
 
 
 
-    public function books() {
-        return $this->hasMany(AuthorBook::class,'author_id','id')
-          ->join('books','author_books.book_id','books.id');
+    // public function books() {
+    //     return $this->hasMany(AuthorBook::class,'author_id','id')
+    //       ->join('books','author_books.book_id','books.id');
+    // }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class,'author_books');
     }
 
 
@@ -120,7 +134,7 @@ class Author extends Model
      * @scope local
      * @return string
      */
-    public function updateAuthorImage($authorRequest)
+    public static function updateAuthorImage($authorRequest)
     {
         $authorImg = $authorRequest->file('photo');
         if ($authorRequest->hasFile('photo')) {

@@ -24,6 +24,7 @@ class CreateBooksTable extends Migration
             $table->integer('number_of_pages')->nullable();
             $table->unsignedDecimal('regular_price',8,2);
             $table->unsignedDecimal('sale_price',8,2)->nullable();
+            $table->integer('discount')->nullable();
             $table->integer('stock')->comment('Stock quantity');
             $table->string('unit',100)->comment('pcs,kgs etc..')->nullable();
             $table->string('book_image')->nullable();

@@ -74,7 +74,15 @@ class Publication extends Model
             'description' => $publicationRequest->description,
             'discount' => $publicationRequest->discount,
         ];
-        return self::updateOrCreate(['id' => $publicationRequest->editId],$publicationData);
+        $updateOrCreatePublication = self::updateOrCreate(['id' => $publicationRequest->editId],$publicationData);
+
+        if ( $publicationRequest->editId) {
+            $publication = Publication::find($publicationRequest->editId);
+            foreach ($publication->books as $book) {
+                Book::setSellPrice($book->id);
+            }
+           }
+        return $updateOrCreatePublication;
     }
 
 
@@ -125,10 +133,13 @@ class Publication extends Model
     }
 
 
+    // public function books() {
+    //     return $this->hasMany(PublicationBook::class,'publication_id','id')
+    //       ->join('books','publication_books.book_id','books.id');
+    // }
 
-
-    public function books() {
-        return $this->hasMany(PublicationBook::class,'publication_id','id')
-          ->join('books','publication_books.book_id','books.id');
+    public function books()
+    {
+        return $this->belongsToMany(Book::class,'publication_books');
     }
 }

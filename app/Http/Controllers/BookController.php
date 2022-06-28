@@ -105,6 +105,7 @@ class BookController extends Controller
             'sku' => $storeBookRequest->bookSku,
             'regular_price' => $storeBookRequest->regularPrice,
             'sale_price' => $storeBookRequest->salePrice,
+            'discount' => ($storeBookRequest->salePrice * 100)/$storeBookRequest->regularPrice,
             'book_slug' => $storeBookRequest->bookSlug,
             'isbn' => $storeBookRequest->bookIsbn,
             'stock' => $storeBookRequest->bookStock,
@@ -122,7 +123,6 @@ class BookController extends Controller
             'description' => $storeBookRequest->bookDescription,
             'additional_info' => $storeBookRequest->additionalInfo,
             'summary' => $storeBookRequest->bookSummary,
-
         ];
         DB::beginTransaction();
         $book = Book::updateOrCreate(['id'=>$storeBookRequest->editId],$bookInfo);
@@ -131,8 +131,6 @@ class BookController extends Controller
         if ($storeBookRequest->book_tags) {
             BookTag::updateOrCreate(['book_id'=>$storeBookRequest->editId],['book_id'=>$book->id,'tag_ids'=>implode(',',$storeBookRequest->book_tags)]);
         }
-
-
 
 
         /**
@@ -161,6 +159,7 @@ class BookController extends Controller
             }
 
         }
+
         /**
          * Find out the difference b/w new coming categories,and already exist categories
          * associated with book
@@ -286,7 +285,7 @@ class BookController extends Controller
             }
 
         }
-
+        Book::setSellPrice($book->id);
         DB::commit();
         return response()->json(['status'=>'success','message' => 'Book saved successfully !']);
     }

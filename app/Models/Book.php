@@ -182,15 +182,17 @@ class Book extends Model
     }
 
 
-    public function setSellPrice($bookId)
+    public static function setSellPrice($bookId)
     {
         $book = Book::where('id',$bookId)->first();
         $categoriDiscounts = [];
         $publicationDiscount = [];
         $authorDiscount = [];
+
         $bookCategories = $book->categories;
         $bookPublication = $book->publication;
         $bookAuthors = $book->author;
+
         foreach ($bookCategories as $category) {
             array_push($categoriDiscounts, $category->discount);
         }
@@ -201,19 +203,32 @@ class Book extends Model
             array_push($authorDiscount, $author->discount);
         }
 
-        $cd = max($categoriDiscounts);
-        $pd = max($publicationDiscount);
-        $ad = max($authorDiscount);
+        if (!empty($categoriDiscounts)) {
+            $cd = max($categoriDiscounts);
+        }else {
+            $cd = 0;
+        }
+        if (!empty($publicationDiscount)) {
+            $pd = max($publicationDiscount);
+        }else {
+            $pd = 0;
+        }
+        if (!empty($authorDiscount)) {
+            $ad = max($authorDiscount);
+        }else {
+            $ad = 0;
+        }
+
         $par = max($cd,$pd,$ad);
+
         $value = $book->regular_price;
         if ($par >= 0) {
             $nsp = $value-(($par/100)*$value);
             $book->sale_price = $nsp;
+            $book->discount = $par;
             $book->save();
         }
-
         return $book->sale_price;
-
     }
 
 
