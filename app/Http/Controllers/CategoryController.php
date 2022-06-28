@@ -28,40 +28,14 @@ class CategoryController extends Controller
     public function categoryShow(Request $request, $categorySlug)
     {
 
-        // return $request;
+        $category = Category::where('category_slug',$categorySlug)->first();
 
         $categories = Category::all();
         $user = Auth::user();
         $authors = Author::all();
         $publications = Publication::all();
+        $books = $category->books;
 
-        $books = '';
-
-
-        $category = Category::where('category_slug',$categorySlug)->first();
-
-        // $books = Book::categoryBook($categorySlug);
-
-        // return $books;
-        if ($category) {
-            # code...
-            $books = DB::select('SELECT
-                    books.*,
-                    categories.id
-                FROM
-                    books
-                    INNER JOIN
-                    category_books
-                    ON
-                    category_books.book_id  = books.id
-                    INNER JOIN
-                    categories
-                    ON
-                        category_books.category_id  = categories.id
-                    WHERE
-                        categories.id  = '.$category->id
-            );
-        }
 
         $maxPrice = Book::max('sale_price');
         $minPrice = Book::min('sale_price');
@@ -83,7 +57,7 @@ class CategoryController extends Controller
         }
     }
 
-    
+
     /**
      * This function returns all the categories by default active
      * @param Request $request

@@ -504,9 +504,9 @@ class BookController extends Controller
      */
     public function getBookDetail(Request $request,$bookSlug)
     {
+        $book = Book::where('book_slug',$bookSlug)->first();
+        $setSaleprice = Book::setSellPrice($book->id);
         if ($request->affiliator) {
-            // $cookie = cookie('bbaffiliator_id', $request->affiliator, 36000);
-            // Cookie::queue('bbaffiliator_id', $request->affiliator, 36000);
             setcookie('bbaffiliator_id', $request->affiliator, time() + (86400 * 25), "/");
             setcookie('bbaffiliator_book', $bookSlug, time() + (86400 * 25), "/");
         }

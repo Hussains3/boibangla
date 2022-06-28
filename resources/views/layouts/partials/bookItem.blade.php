@@ -15,13 +15,13 @@
         </div>
 
         <span class="title" style="overflow-wrap: break-word; font-wight:700;">{{ $book->book_name }}</span>
-        {{-- <span class="title" style="overflow-wrap: break-word; font-wight:700;">
+        <span class="" style="overflow-wrap: break-word; ">
             @forelse ($book->author as $author)
                 {{ $author->name }}
             @empty
                 <a>Unknown</a>
             @endforelse
-        </span> --}}
+        </span>
         <span class="price">
             <span class="list-price">৳{{ $book->regular_price }}</span>&nbsp;
             <span class="sale-price">৳{{ $book->sale_price }}</span>

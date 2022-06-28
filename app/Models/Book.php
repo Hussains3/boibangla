@@ -152,11 +152,9 @@ class Book extends Model
        return self::whereId($bookId)->increment('total_reviews');
     }
 
-
-    public function categories() {
-
-        return $this->hasMany(CategoryBook::class,'book_id','id')
-          ->join('categories','category_books.category_id','categories.id');
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'category_books');
     }
 
     public function author() {
@@ -184,15 +182,37 @@ class Book extends Model
     }
 
 
-    public function discount()
+    public function setSellPrice($bookId)
     {
-        $catdiscount = $this->categories()->orderBy('discount','desc')->get('discount');
-        $pubdiscount = $this->publication()->orderBy('discount','desc')->get('discount');
-        $autdiscount = $this->author()->orderBy('discount','desc')->get('discount');
+        $book = Book::where('id',$bookId)->first();
+        $categoriDiscounts = [];
+        $publicationDiscount = [];
+        $authorDiscount = [];
+        $bookCategories = $book->categories;
+        $bookPublication = $book->publication;
+        $bookAuthors = $book->author;
+        foreach ($bookCategories as $category) {
+            array_push($categoriDiscounts, $category->discount);
+        }
+        foreach ($bookPublication as $publication) {
+            array_push($publicationDiscount, $publication->discount);
+        }
+        foreach ($bookAuthors as $author) {
+            array_push($authorDiscount, $author->discount);
+        }
 
+        $cd = max($categoriDiscounts);
+        $pd = max($publicationDiscount);
+        $ad = max($authorDiscount);
+        $par = max($cd,$pd,$ad);
+        $value = $book->regular_price;
+        if ($par >= 0) {
+            $nsp = $value-(($par/100)*$value);
+            $book->sale_price = $nsp;
+            $book->save();
+        }
 
-        return $discount = max($catdiscount,$pubdiscount,$autdiscount);
-        return 500;
+        return $book->sale_price;
 
     }
 
@@ -200,18 +220,7 @@ class Book extends Model
     public static function categoryBook($categorySlug)
     {
         $category  = Category::where('category_slug', $categorySlug)->pluck('id')->first();
-
-
-        // $books = self::where(['book_id'=>$bookId,'user_id'=>$userId])->first();
-
         return $category;
-
-        // $alreadyRated =  self::select('id')->where(['book_id'=>$bookId,'user_id'=>$userId])->first();
-        // if (!$alreadyRated){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
     }
 
 

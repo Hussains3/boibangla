@@ -121,10 +121,14 @@ class Category extends Model
         return $this->hasMany(SubCategory::class,'category_id','id');
     }
 
-    public function book() {
-        return $this->hasMany(CategoryBook::class,'category_id','id')
-        ->join('books','category_books.book_id','books.id');
+    
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class,'category_books');
     }
+
+
 
 
 }
