@@ -19,6 +19,7 @@ use App\Models\Address;
 use Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class CheckoutController extends Controller
 {
@@ -60,10 +61,6 @@ class CheckoutController extends Controller
         }*/
         $cartConditions = \Cart::getConditions();
         $cartAmount = \Cart::getTotal();
-
-
-
-
 
         if ($checkoutRequest->payment_option == 'wallet'){
             if (!User::checkEnoughBalanceInWallet($userId,$cartAmount)){
