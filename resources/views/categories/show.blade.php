@@ -17,8 +17,7 @@
                             <ul class="bullet-link">
                                 @forelse ($category->subCategories as $subCategory)
                                     <li class="first-leve">
-                                        {{-- <a href="{{ route('showCategory', $subCategory->subcategory) }}"></a> --}}
-                                        {{ $subCategory->subcategory }}
+                                        <a href="{{ route('showSubCategory', $subCategory->slug) }}">{{ $subCategory->subcategory }}</a>
                                     </li>
                                 @empty
 

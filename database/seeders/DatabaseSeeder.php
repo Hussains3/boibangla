@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         //  $this->call([TagSeeder::class]);
         //  $this->call([WalletRequestSeeder::class]);
         //  $this->call([AddressSeeder::class]);
-        //  $this->call([LanguageSeeder::class]);
+         $this->call([LanguageSeeder::class]);
         //  $this->call([LanguageBookSeeder::class]);
         //  $this->call([CountryBookSeeder::class]);
         //  $this->call([CustomerAddressSeeder::class]);

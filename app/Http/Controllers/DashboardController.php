@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Helper\Helper;
 use App\Mail\AccountCreated;
 use App\Models\Address;
+use App\Models\Affiliation;
 use App\Models\AffiliationLink;
 use App\Models\Book;
 use App\Models\User;
@@ -128,9 +129,9 @@ class DashboardController extends Controller
 
     public function earningReport()
     {
-        $user = User::find(Auth::id())
-        ->first();
-        return view('profile.affiliats.earningReport',compact('user'));
+        $user = User::find(Auth::id())->first();
+        $affiliation = Affiliation::where('user_id',Auth::id())->first();
+        return view('profile.affiliats.earningReport',compact('user','affiliation'));
 
     }
 

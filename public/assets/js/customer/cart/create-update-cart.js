@@ -158,9 +158,9 @@ function setCartPageData(response) {
                                 <td class="book-price" data-title="Price">৳`+bookPrice+`</td>
                                 <td class="book-quantity" data-title="Quantity">
                                      <div class=" d-flex">
-                                        <input type="button" onclick="decreaseQty(`+value.id+`);" value="-" class="minus btn-red">
+                                        <input type="button" onclick="decreaseQty(`+value.id+`);" value="-" class="minus btn-red-micro">
                                         <input type="text" name="cart_quantity`+value.id+`" id="cart_quantity`+value.id+`" readonly value="`+bookQty+`" title="Qty" class="qty qty-input" size="4">
-                                        <input type="button" onclick="increaseQty(`+value.id+`);" value="+" class="plus btn-red">
+                                        <input type="button" onclick="increaseQty(`+value.id+`);" value="+" class="plus btn-red-micro">
                                     </div>
                                 </td>
                                 <td class="book-subtotal" data-title="Total">৳`+total+`</td>

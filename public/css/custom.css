@@ -251,6 +251,14 @@
     .mobile90 {
         width: 92% !important;
     }
+
+    .homepagetabs-base
+    {
+        padding-right: 5px;
+    }
+    .flex-sm-column{
+        flex-direction: column;
+    }
 }
 #site-wrapper {
     margin-top: 20px;

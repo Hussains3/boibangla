@@ -39,20 +39,59 @@ class SubCategoryController extends Controller
 
         // return $request;
 
+
+
+        $subcategory = SubCategory::where('slug',$slug)->first();
+        $category = $subcategory->category;
         $categories = Category::all();
         $user = Auth::user();
         $authors = Author::all();
         $publications = Publication::all();
+        $books = $subcategory->books;
 
-        $books = '';
+        if ($request->bprice) {
+            switch ($request->bprice) {
+                case '1':
+                    $books = $books->where('sale_price','<',100);
+                    break;
+                case '2':
+                    $books = $books->where('sale_price','>=',100)->where('sale_price','<=',500);
+                    break;
+                case '3':
+                    $books = $books->where('sale_price','>=',501)->where('sale_price','<=',1000);
+                    break;
+                case '4':
+                    $books = $books->where('sale_price','>=',1001)->where('sale_price','<=',2000);
+                    break;
+                case '5':
+                    $books = $books->where('sale_price','>',2000);
+                    break;
+            }
+        }
+
+        if ($request->bdiscount) {
+            switch ($request->bdiscount) {
+                case '1':
+                    $books = $books->where('discount','<',20);
+                    break;
+                case '2':
+                    $books = $books->where('discount','>=',21)->where('discount','<=',40);
+                    break;
+                case '3':
+                    $books = $books->where('discount','>=',41)->where('discount','<=',60);
+                    break;
+                case '4':
+                    $books = $books->where('discount','>=',61)->where('discount','<=',80);
+                    break;
+                case '5':
+                    $books = $books->where('discount','>',80);
+                    break;
+            }
+        }
 
 
-        $subcategory = SubCategory::where('slug',$slug)->first();
-        $maxPrice = Book::max('sale_price');
-        $minPrice = Book::min('sale_price');
 
-
-        return view('subcategories.show',compact('subcategory','books','categories','user','authors','publications','maxPrice','minPrice'));
+        return view('subcategories.show',compact('subcategory','category','books','categories','user','authors','publications'));
     }
 
     /**

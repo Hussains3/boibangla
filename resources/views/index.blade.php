@@ -269,11 +269,11 @@
 
 
                 {{-- Category --}}
-                <div class="d-flex justify-content-between" style="padding: 0 5px;">
-                    <a class="btn-red mt-1" href="" rel="nofollow">অতিরিক্ত ছাড়</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">প্যারেন্টিং</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">সদ্য প্রকাশিত বই</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">ইংরেজি শেখার বই</a>
+                <div class="d-flex justify-content-between flex-sm-column" style="padding: 0 5px;">
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">অতিরিক্ত ছাড়</a>
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">প্যারেন্টিং</a>
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">সদ্য প্রকাশিত বই</a>
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">ইংরেজি শেখার বই</a>
                 </div>
 
                 {{-- islamic/other/translation --}}
@@ -457,11 +457,11 @@
                     </div>
                 </div>
                 {{-- Category --}}
-                <div class="d-flex justify-content-between" style="padding: 0 5px;">
-                    <a class="btn-red mt-1" href="" rel="nofollow">রাজনৈতিক</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">আত্ম-উন্নয়ন,মোটিভেশনাল</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">পশ্চিমবঙ্গের বই</a>
-                    <a class="btn-red mt-1" href="" rel="nofollow">কম্পিউটার ও ফ্রিল্যান্সিং</a>
+                <div class="d-flex justify-content-between flex-sm-column" style="padding: 0 5px;">
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">রাজনৈতিক</a>
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">আত্ম-উন্নয়ন,মোটিভেশনাল</a>
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">পশ্চিমবঙ্গের বই</a>
+                    <a class="btn-red mt-1 text-center" href="" rel="nofollow">কম্পিউটার ও ফ্রিল্যান্সিং</a>
                 </div>
 
 

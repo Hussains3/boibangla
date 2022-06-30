@@ -19,10 +19,13 @@ class CreateAffiliationItemsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('affiliation_id');
             $table->foreign('affiliation_id')->references('id')->on('affiliations');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('users');
             $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->unsignedInteger('status')->default(1)->comment('1=>Pending,2=>Delivered,3=>Canceled');
             $table->timestamps();
         });
     }

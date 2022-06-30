@@ -16,11 +16,10 @@
                             <p>{{$category->category}}</p>
                             <ul class="bullet-link">
                                 @forelse ($category->subCategories as $subCategory)
-                                    <li class="first-leve"><a
-                                            href="{{ route('showCategory', $subCategory->subcategory) }}">{{ $subCategory->subcategory }}</a>
+                                    <li class="first-leve">
+                                        <a href="{{ route('showSubCategory', $subCategory->slug) }}">{{ $subCategory->subcategory }}</a>
                                     </li>
                                 @empty
-
                                     <li class="first-leve">No Category</li>
                                 @endforelse
                             </ul>
@@ -32,7 +31,7 @@
                     <div class="result-heading">
                         <div class="search-summary">
                             <div class="category-head">
-                                <h1>{{ $category->category }}</h1>
+                                <h1>{{ $subcategory->subcategory }}</h1>
                             </div>
                             <div class="preferences-show"><b>{{ count($books) }}</b> results found</div>
                         </div>
@@ -51,4 +50,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('script')
+<script>
+    var filterFormurl = "{{ route('showSubCategory', $subCategory->slug) }}";
+    $("#filterbtn").click(function (e) {
+        e.preventDefault();
+        $("form#bookFilterForm").attr('action', filterFormurl);
+        $("form#bookFilterForm").submit();
+    });
+</script>
 @endsection

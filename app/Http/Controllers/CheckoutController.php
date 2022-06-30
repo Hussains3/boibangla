@@ -20,6 +20,7 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
@@ -49,7 +50,7 @@ class CheckoutController extends Controller
      * @param CheckoutRequest $checkoutRequest
      * @return json
      */
-    public function placeOrder(CheckoutRequest $checkoutRequest)
+    public function placeOrder(Request $request,CheckoutRequest $checkoutRequest)
     {
         // return response()->json(['data'=>$checkoutRequest]);
 
@@ -78,7 +79,7 @@ class CheckoutController extends Controller
 
         $orderNumber = $this->getOrderNumber();
         // $shurjopay    = ShurjoPayPayment::setSpDataSession();
-        Order::placeOrder($checkoutRequest,$orderNumber,$conditions);
+        Order::placeOrder($checkoutRequest,$orderNumber,$conditions,$request);
         Helper::sendOrderProcessedMail(Order::getOrderIdByOrderNo($orderNumber));
         \Cart::clear();
         \Cart::clearCartConditions();

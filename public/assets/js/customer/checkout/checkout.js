@@ -8,10 +8,12 @@ $("form#checkoutForm").on("submit",function (e) {
         data:$("#checkoutForm").serialize(),
         beforeSend:function(){
             $("#placeOrderBtn").attr('disabled',true);
-            // $("#placeOrderBtn").html('Placing Order');
+            $("#placeOrderBtn").text('Placing Order..Please wait');
             if (!$('input[name="address_option"]').val()) {
                 // xhr.abort();
                 $("#placeOrderBtn").attr('disabled',false);
+                $("#placeOrderBtn").text('Place Order');
+
                 return false;
             }
             $("#loader").show();

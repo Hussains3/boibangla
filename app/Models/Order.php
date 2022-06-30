@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helper\Helper;
 use App\Models\Setting;
-
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Cookie;
 class Order extends Model
 {
     use HasFactory;
@@ -146,7 +148,7 @@ class Order extends Model
      * @param $conditions
      * @return collection
      */
-    public static function placeOrder($checkoutRequest,$orderNumber,$conditions )
+    public static function placeOrder($checkoutRequest,$orderNumber,$conditions,$request)
     {
         $userId = Auth::id();
         $cartItems = \Cart::getContent();
@@ -173,6 +175,30 @@ class Order extends Model
               'quantity' => $item->quantity,
               'price' => $item->price,
             ];
+        }
+
+        // Debugbar::info($checkoutRequest);
+        // dd($checkoutRequest);
+
+        if ($request->cookie('bbaffiliator_book')) {
+            $booksllug = $request->cookie('bbaffiliator_book');
+            $affiliator = $request->cookie('bbaffiliator_id');
+
+            $affiliationbook = Book::where('slug', $booksllug)->get('id');
+            $affiliation = Affiliation::where('affiliate_id',$affiliator)->get();
+
+            foreach ($cartItems as $item){
+                if ($item->id == $affiliationbook) {
+                    $affiliationItem[]=[
+                        'order_id'=> $order->id,
+                        'book_id' => $affiliationbook,
+                        'user_id' => Auth::user()->id,
+                        'affiliation_id' => $affiliator,
+                        'status' => 1,
+                    ];
+                    AffiliationItem::insert($affiliationItem);
+                }
+            }
         }
 
         $result =  OrderBook::insert($orderedbook);

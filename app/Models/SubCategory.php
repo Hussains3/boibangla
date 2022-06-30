@@ -95,4 +95,14 @@ class SubCategory extends Model
     {
         return self::where('id',$request->subCategoryId)->delete();
     }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class,'sub_category_books');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
 }

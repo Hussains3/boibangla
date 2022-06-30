@@ -45,7 +45,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     // Front End
     Route::get('categories/show/{categorySlag}', 'CategoryController@categoryShow')->name('showCategory');
-    // Route::get('subcategories/show/{subcategoryslug}', 'SubCategoryController@showSubCategory')->name('showSubCategory');
+    Route::get('subcategories/show/{subcategoryslug}', 'SubCategoryController@showSubCategory')->name('showSubCategory');
     Route::get('tags/show/{tagSlag}', 'TagController@tagShow')->name('showTag');
     // Route::get('books/show/{bookSlag}', 'BookController@bookShow')->name('showBook');
     Route::get('featuredAuthors', 'AuthorController@customerAuthors')->name('cfeaturedAuthors');
