@@ -17,7 +17,10 @@ class CreateWithdrawRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedDecimal('price',8,2);
+            $table->unsignedBigInteger('affiliation_id');
+            $table->foreign('affiliation_id')->references('id')->on('affiliations');
+            $table->unsignedDecimal('ammount',8,2);
+            $table->longText('note')->nullable();
             $table->unsignedInteger('status')->default(1)->comment('1=>Pending,2=>Accepted,3=>Canceled');
             $table->timestamps();
         });

@@ -176,32 +176,32 @@ class Order extends Model
               'price' => $item->price,
             ];
         }
+        $result =  OrderBook::insert($orderedbook);
 
-        // Debugbar::info($checkoutRequest);
-        // dd($checkoutRequest);
 
-        if ($request->cookie('bbaffiliator_book')) {
+        // Adding affiliation Items if affiliation available
+        if ($request->cookie('bbaffiliator_id')) {
             $booksllug = $request->cookie('bbaffiliator_book');
             $affiliator = $request->cookie('bbaffiliator_id');
-
-            $affiliationbook = Book::where('slug', $booksllug)->get('id');
-            $affiliation = Affiliation::where('affiliate_id',$affiliator)->get();
+            $affiliation = Affiliation::where('affiliate_id',$affiliator)->first();
+            $abook = Book::where('book_slug', $booksllug)->first();
+            $afr = Setting::where('setting_name','=','affiliation_rate')->first();
 
             foreach ($cartItems as $item){
-                if ($item->id == $affiliationbook) {
-                    $affiliationItem[]=[
-                        'order_id'=> $order->id,
-                        'book_id' => $affiliationbook,
-                        'user_id' => Auth::user()->id,
-                        'affiliation_id' => $affiliator,
-                        'status' => 1,
-                    ];
-                    AffiliationItem::insert($affiliationItem);
+                if ($item->id == $abook->id) {
+                    $newai = new AffiliationItem();
+                    $newai->order_id = $order->id;
+                    $newai->book_id = $abook->id;
+                    $newai->ammount = $item->quantity*($item->price*($afr->setting_value/100));
+                    $newai->user_id = Auth::user()->id;
+                    $newai->affiliation_id = $affiliation->id;
+                    $newai->status = 1;
+                    $newai->save();
                 }
             }
         }
+        // Adding affiliation Items if affiliation available
 
-        $result =  OrderBook::insert($orderedbook);
         if ($checkoutRequest->payment_option == 'wallet'){
             self::deductFromWallet($userId,$paymentAmount);
         }

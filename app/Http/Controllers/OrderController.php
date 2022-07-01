@@ -13,6 +13,8 @@ use App\Models\Discount;
 use Symfony\Component\HttpFoundation\Request;
 use App\Helper\Helper;
 use App\Helper\ResponseHelper;
+use App\Models\Affiliation;
+use App\Models\AffiliationItem;
 
 class OrderController extends Controller
 {
@@ -134,9 +136,29 @@ class OrderController extends Controller
     public function markDelivered(Request $request)
     {
         $deliver = Order::markDelivered($request->orderId,$request->remark);
+
+
         if ($deliver){
             Helper::orderProcessingNotify($request->orderId);
             Helper::sendOrderProcessedMail($request->orderId);
+
+            $affiliationItem = AffiliationItem::where('order_id',$request->orderId)->first();
+            if ($affiliationItem ) {
+                $atp = AffiliationItem::where('order_id',$request->orderId)->sum('ammount');
+                $afon = Affiliation::find($affiliationItem->affiliation_id);
+                $afon->total_earning += $atp;
+                $afon->balance += $atp;
+                $afon->save();
+
+                // update  status
+                $uaitms = AffiliationItem::where('order_id',$request->orderId)->get();
+                foreach ($uaitms as $uaitm) {
+                    $uaitm->status = 2;
+                    $uaitm->save();
+                }
+            }
+
+
             $response = response()->json(['status'=>'success','message'=>'Order marked to delivered successfully']);
         }else{
             $response = response()->json(['status'=>'error','message'=>'Some Error']);

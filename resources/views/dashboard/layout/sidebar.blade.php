@@ -49,6 +49,7 @@
                     <li><a><i class="fa fa-bars"></i> Affiliation <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('affiliationapplication.index')}}">Applications</a></li>
+                            <li><a href="{{route('withdraws.index')}}">Withdraws</a></li>
                         </ul>
                     </li>
                     @endrole

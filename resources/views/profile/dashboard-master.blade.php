@@ -32,7 +32,7 @@
                         </li>
                         <li> <a href="{{ route('affiliLinks') }}">Links & Buttons</a></li>
                         <li> <a href="{{ route('earningReport') }}">Earning Report</a></li>
-                        <li> <a href="{{ route('affiliatorProduct') }}">Products Report</a></li>
+                        {{-- <li> <a href="{{ route('affiliatorProduct') }}">Products Report</a></li> --}}
                         @endrole
 
                     </ul>
@@ -61,6 +61,12 @@
 
 @section('script')
 @yield('inner-script')
-
+<script>
+    $(document).ready(function () {
+        // $(selector).fadeOut();
+        $(".fadeinout").delay(50).fadeIn(800);
+        $(".fadeinout").delay(3000).fadeOut(800);
+    });
+</script>
 
 @endsection

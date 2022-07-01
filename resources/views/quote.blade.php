@@ -4,6 +4,11 @@
     <section id="corporate-header">
         <div class="container">
             <div class="row">
+                <div class="fadeinout">
+                    @include('layouts.partials.messages')
+                </div>
+            </div>
+            <div class="row">
 
                 <div class="">
                     <h1>
@@ -184,6 +189,8 @@
             //     });
             // });
 
-        });
+        $(".fadeinout").delay(50).fadeIn(800);
+        $(".fadeinout").delay(3000).fadeOut(800);
+    });
 </script>
 @endsection

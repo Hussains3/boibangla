@@ -85,9 +85,15 @@ class AffiliationController extends Controller
      * @param  \App\Models\Affiliation  $affiliation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAffiliationRequest $request, Affiliation $affiliation)
+    public function update(UpdateAffiliationRequest $request )
     {
-        //
+        $affiliation = Affiliation::Where('user_id',Auth::id())->first();
+        $affiliation->payee_name = $request->payee_name;
+        $affiliation->payment_mode = $request->payment_mode;
+        $affiliation->payment_mode_details = $request->payment_mode_details;
+        $affiliation->save();
+
+        return redirect()->route('earningReport')->withSuccess(['status'=>'success', 'message' => 'Information updated.']);
     }
 
     /**

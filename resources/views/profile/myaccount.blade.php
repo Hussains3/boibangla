@@ -58,16 +58,6 @@
 @endsection
 @section('script')
 
-<script>
-    function ClosePopup() {
-    document.getElementById('ctl00_phBody_AccountSetting_fvCustomer_plnOTP').style.display = "none";
-    }
-    $(document).ready(function () {
-        // $(selector).fadeOut();
-        $(".fadeinout").delay(50).fadeIn(800);
-        $(".fadeinout").delay(3000).fadeOut(800);
-    });
-</script>
 
 @endsection
 

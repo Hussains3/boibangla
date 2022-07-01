@@ -18,9 +18,10 @@ function getCart() {
                             <thead>
                             <tr>
                                 <th class="product-thumbnail">&nbsp;</th>
-                                <th class="product-name">Product</th>
+                                <th class="product-name">Book</th>
                                 <th class="product-price">Price</th>
                                 <th class="product-quantity">Quantity</th>
+                                <th class="product-slug">Slug</th>
                                 <th class="product-subtotal">Total</th>
                                 <th class="product-remove">Remove</th>
                             </tr>

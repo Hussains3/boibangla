@@ -40,7 +40,6 @@ class SubCategoryController extends Controller
         // return $request;
 
 
-
         $subcategory = SubCategory::where('slug',$slug)->first();
         $category = $subcategory->category;
         $categories = Category::all();

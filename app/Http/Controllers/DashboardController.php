@@ -18,6 +18,7 @@ use App\Models\Category;
 use App\Models\Publication;
 use App\Models\Newsletter;
 use App\Models\Wishlist;
+use App\Models\WithdrawRequest;
 
 class DashboardController extends Controller
 {
@@ -131,7 +132,8 @@ class DashboardController extends Controller
     {
         $user = User::find(Auth::id())->first();
         $affiliation = Affiliation::where('user_id',Auth::id())->first();
-        return view('profile.affiliats.earningReport',compact('user','affiliation'));
+        $pendingReqiest = WithdrawRequest::where('user_id', Auth::id())->where('status', 1)->get();
+        return view('profile.affiliats.earningReport',compact('user','affiliation','pendingReqiest'));
 
     }
 

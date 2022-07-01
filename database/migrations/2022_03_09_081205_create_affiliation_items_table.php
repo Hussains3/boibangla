@@ -25,6 +25,7 @@ class CreateAffiliationItemsTable extends Migration
             $table->foreign('book_id')->references('id')->on('books');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
+            $table->decimal('ammount', 10, 2);
             $table->unsignedInteger('status')->default(1)->comment('1=>Pending,2=>Delivered,3=>Canceled');
             $table->timestamps();
         });

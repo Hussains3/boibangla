@@ -23,11 +23,7 @@ class CreateAffiliationsTable extends Migration
             $table->tinyInteger('status')->default(1)->comment('1=>Pending,2=>Active,3=>Inactive');
             $table->string('payee_name')->nullable();
             $table->string('payment_mode')->nullable();
-            $table->string('pan')->nullable();
-            $table->string('country')->nullable();
-            $table->string('state')->nullable();
-            $table->string('city')->nullable();
-            $table->string('zip')->nullable();
+            $table->longText('payment_mode_details')->nullable();
             $table->decimal('total_earning', 10, 2)->default(0);
             $table->decimal('balance', 10, 2)->default(0);
             $table->integer('rate')->nullable();

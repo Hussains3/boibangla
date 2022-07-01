@@ -28,7 +28,10 @@ use App\Http\Requests\BookUploadRequest;
 use App\Models\Country;
 use App\Models\Language;
 use App\Models\Wishlist;
-use Symfony\Component\HttpFoundation\Cookie;
+use Illuminate\Support\Facades\Cookie;
+use App\Models\Affiliation;
+use App\Models\AffiliationItem;
+use App\Models\Setting;
 
 class BookController extends Controller
 {
@@ -505,10 +508,17 @@ class BookController extends Controller
     {
         $book = Book::where('book_slug',$bookSlug)->first();
         $setSaleprice = Book::setSellPrice($book->id);
+        $minutes =  36000;
         if ($request->affiliator) {
-            setcookie('bbaffiliator_id', $request->affiliator, time() + (86400 * 25), "/");
-            setcookie('bbaffiliator_book', $bookSlug, time() + (86400 * 25), "/");
+            $affiliatorID = Cookie::queue('bbaffiliator_id', $request->affiliator, $minutes);
+            $bbaffiliator_book = Cookie::queue('bbaffiliator_book', $bookSlug, $minutes);
         }
+
+        // only for test
+
+        
+        // only for test
+
         $bookTagNames = [];
         $bookDetail = Book::getBookDetail($bookSlug);
         $bookCategory= $bookDetail->categories->first();
@@ -673,7 +683,7 @@ class BookController extends Controller
     }
 
 
-    
+
     /**
      * This function uploads 1nd book image
      * @param $bookRequest

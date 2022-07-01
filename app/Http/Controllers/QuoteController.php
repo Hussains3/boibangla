@@ -61,7 +61,7 @@ class QuoteController extends Controller
 
         $quote->save();
         // return response()->json(['status'=>'success','message' => 'We will contact you soon']);
-        return redirect()->route('get-quote');
+        return redirect()->route('get-quote')->withSuccess(__('Orderd successfully. We will contact you soon'));
     }
 
     /**

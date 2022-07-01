@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\WithdrawRequest;
 use App\Http\Requests\StoreWithdrawRequestRequest;
 use App\Http\Requests\UpdateWithdrawRequestRequest;
+use Illuminate\Support\Facades\Auth;
 
 class WithdrawRequestController extends Controller
 {
@@ -15,8 +16,15 @@ class WithdrawRequestController extends Controller
      */
     public function index()
     {
-        //
+        $withdrawRequests = WithdrawRequest::with('affiliation')->get();
+
+        return view('dashboard.withdrawrequests.index',
+            compact(
+                'withdrawRequests'
+            )
+            );
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +44,14 @@ class WithdrawRequestController extends Controller
      */
     public function store(StoreWithdrawRequestRequest $request)
     {
-        //
+        $withdraw = new WithdrawRequest();
+        $withdraw->user_id = Auth::user()->id;
+        $withdraw->affiliation_id  = $request->affiliation_id;
+        $withdraw->ammount = $request->ammount;
+        $withdraw->status = 1;
+        $withdraw->save();
+
+        return redirect()->route('earningReport')->withSuccess(__('Request recived. We will contact you soon'));
     }
 
     /**
@@ -81,6 +96,6 @@ class WithdrawRequestController extends Controller
      */
     public function destroy(WithdrawRequest $withdrawRequest)
     {
-        //
+        
     }
 }

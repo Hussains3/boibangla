@@ -25,7 +25,9 @@
     }
 }
 
-
+.text-red{
+    color: #bc3232 !important;
+}
 .d-flex{display: flex;}
 .d-none{display: none;}
 .d-block{display: block;}
@@ -584,3 +586,12 @@
 
 
 
+.earningtable  td,
+.earningtable  th {
+	border: solid 1px #ccc;
+	padding: 6px;
+	font-size: 11px;
+}
+.earningtable  {
+	border-collapse: collapse;
+}

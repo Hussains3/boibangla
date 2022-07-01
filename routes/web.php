@@ -157,6 +157,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('affiliations', AffiliationController::class);
+        Route::resource('withdraws', WithdrawRequestController::class);
         Route::resource('wishlists', WishlistController::class);
         Route::resource('affiliationapplication', AffiliatorApplicationController::class);
         Route::resource('affiliationLinks', AffiliationLinkController::class);
@@ -181,6 +182,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/affiLinks', 'DashboardController@affiliatorLinks')->name('affiliLinks');
             Route::get('/affiBookReport', 'DashboardController@affiliatorProduct')->name('affiliatorProduct');
             Route::get('/earningReport', 'DashboardController@earningReport')->name('earningReport');
+            Route::patch('updateaffiliation', 'AffiliationController@update')->name('caffiliation.update');
+
         });
 
         //Logout Routes
