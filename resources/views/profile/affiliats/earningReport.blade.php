@@ -23,7 +23,10 @@
                 <label class="form-controll me-1" for="payment_mode_details">Method Details</label>
                 <input class="new-txt-box" type="text" name="payment_mode_details" id="payment_mode_details" value="{{$affiliation->payment_mode_details ?? ''}}" required>
             </div>
+            @if ($prq <= 0)
+
             <input type="submit" value="Save" class="btn-red-micro">
+            @endif
         </form>
     </div>
     <h2 id="earnings-report">Earnings Report </h2>
@@ -48,7 +51,7 @@
 
     <div class="">
         <h2>Send a withdraw request</h2>
-        <form action="{{route('Withdraws.store')}}" method="post">
+        <form action="{{route('withdraws.store')}}" method="post">
             @csrf
             <input type="number" class="new-txt-box" name="ammount" id="price" max="{{$affiliation->balance}}" value="{{$affiliation->balance}}">
             <input type="hidden" name="affiliation_id" value="{{$affiliation->id}}">
@@ -60,6 +63,7 @@
 
     @if (!empty($pendingReqiest))
     <div class=" mt-2">
+        <h2>Your withdraw request</h2>
         <table class="earningtable">
             <thead>
                     <th>Date</th>

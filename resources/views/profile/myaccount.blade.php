@@ -57,7 +57,11 @@
     </div>
 @endsection
 @section('script')
-
-
+<script>
+    $(document).ready(function () {
+        $(".fadeinout").delay(50).fadeIn(800);
+        $(".fadeinout").delay(3000).fadeOut(800);
+    });
+</script>
 @endsection
 

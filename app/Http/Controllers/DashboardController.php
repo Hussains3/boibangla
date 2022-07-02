@@ -132,8 +132,9 @@ class DashboardController extends Controller
     {
         $user = User::find(Auth::id())->first();
         $affiliation = Affiliation::where('user_id',Auth::id())->first();
-        $pendingReqiest = WithdrawRequest::where('user_id', Auth::id())->where('status', 1)->get();
-        return view('profile.affiliats.earningReport',compact('user','affiliation','pendingReqiest'));
+        $pendingReqiest = WithdrawRequest::where('user_id', Auth::id())->get();
+        $prq = WithdrawRequest::where('user_id',Auth::id())->where('status',1)->count();
+        return view('profile.affiliats.earningReport',compact('user','affiliation','pendingReqiest','prq'));
 
     }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\WithdrawRequest;
 use App\Http\Requests\StoreWithdrawRequestRequest;
 use App\Http\Requests\UpdateWithdrawRequestRequest;
+use App\Models\Affiliation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WithdrawRequestController extends Controller
@@ -44,6 +46,10 @@ class WithdrawRequestController extends Controller
      */
     public function store(StoreWithdrawRequestRequest $request)
     {
+        $ifPendingExist = WithdrawRequest::where('user_id',Auth::id())->where('status',1)->count();
+        if ($ifPendingExist > 0) {
+            return redirect()->route('earningReport')->withSuccess(__('Sorry!. You already have a pending request. We are working on it'));
+        }
         $withdraw = new WithdrawRequest();
         $withdraw->user_id = Auth::user()->id;
         $withdraw->affiliation_id  = $request->affiliation_id;
@@ -60,9 +66,15 @@ class WithdrawRequestController extends Controller
      * @param  \App\Models\WithdrawRequest  $withdrawRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(WithdrawRequest $withdrawRequest)
+    public function show(Request $request)
     {
-        //
+        $wrq = WithdrawRequest::with('affiliation')->where('id',$request->id)->first();
+
+        return view('dashboard.withdrawrequests.show',
+            compact(
+                'wrq'
+            )
+            );
     }
 
     /**
@@ -83,9 +95,26 @@ class WithdrawRequestController extends Controller
      * @param  \App\Models\WithdrawRequest  $withdrawRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateWithdrawRequestRequest $request, WithdrawRequest $withdrawRequest)
+    public function update(UpdateWithdrawRequestRequest $request)
     {
-        //
+        $withdrawRequest = WithdrawRequest::with('affiliation')->where('id',$request->id)->first();
+
+        if ($request->note) {
+            $withdrawRequest->note = $request->note;
+        }
+        if ($request->status) {
+            $withdrawRequest->status = $request->status;
+        }
+
+        if ($request->ammount) {
+            $affiliation = Affiliation::find($withdrawRequest->affiliation_id);
+            $affiliation->balance -= $request->ammount;
+            $affiliation->save();
+        }
+
+        $withdrawRequest->save();
+
+        return redirect()->route('withdraws.index')->withSuccess(__('Informatin updated'));
     }
 
     /**
@@ -96,6 +125,6 @@ class WithdrawRequestController extends Controller
      */
     public function destroy(WithdrawRequest $withdrawRequest)
     {
-        
+
     }
 }

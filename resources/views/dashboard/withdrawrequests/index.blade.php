@@ -20,7 +20,8 @@
                                     <th class="column-title">Avilable Ammount</th>
                                     <th class="column-title">Payment Method</th>
                                     <th class="column-title">Method Details</th>
-                                    {{-- <th class="column-title" colspan="3">Action</th> --}}
+                                    <th class="column-title">Status</th>
+                                    <th class="column-title">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -30,20 +31,21 @@
                                             <td>{{$withdrawRequest->affiliation->balance}}</td>
                                             <td>{{$withdrawRequest->affiliation->payment_mode}}</td>
                                             <td>{{$withdrawRequest->affiliation->payment_mode_details}}</td>
-                                            {{-- <td><a href="" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a></td>
                                             <td>
-                                                {!! Form::open(['method' => 'PATCH','route' => ['withdraws.update', $withdrawRequest->id],'style'=>'display:inline']) !!}
-                                                {!! Form::hidden('user_id', $withdrawRequest->id) !!}
-                                                {!! Form::hidden('id', $withdrawRequest->id) !!}
-                                                <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
-                                                {!! Form::close() !!}
+                                                @if ($withdrawRequest->status == 1)
+                                                Pending
+                                                @elseif ($withdrawRequest->status == 2)
+                                                Accepted
+                                                @else
+                                                Rejected
+                                                @endif
                                             </td>
                                             <td>
-                                                {!! Form::open(['method' => 'DELETE','route' => ['withdraws.destroy', $withdrawRequest->id],'style'=>'display:inline']) !!}
-                                                {!! Form::hidden('applicationID', $withdrawRequest->id) !!}
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                {!! Form::open(['method' => 'GET','route' => ['withdraws.show', $withdrawRequest->id],'style'=>'display:inline']) !!}
+                                                {!! Form::hidden('id', $withdrawRequest->id) !!}
+                                                <button type="submit" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></button>
                                                 {!! Form::close() !!}
-                                            </td> --}}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
