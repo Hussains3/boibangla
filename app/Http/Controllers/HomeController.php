@@ -22,27 +22,75 @@ class HomeController extends Controller
         $cartCollection = \Cart::getContent();
         $categories = Category::all();
         $authors = Author::all();
-        $bestSellingBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','best-seller')->orderBy('books.id', 'DESC')->take(8)->get();
-        $awardWiningBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','award-wining')->orderBy('books.id', 'DESC')->take(8)->get();
-        $shishuKishorBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','shishu-kishor')->orderBy('books.id', 'DESC')->take(8)->get();
-        $sienceFictionBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','sience-fiction')->orderBy('books.id', 'DESC')->take(8)->get();
-        $newCollectionBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','new-collection')->orderBy('books.id', 'DESC')->take(8)->get();
-        $preeOrdeerBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','pre-ordeer')->orderBy('books.id', 'DESC')->take(8)->get();
-        $siriesBook = Book::select('books.*','category_books.*','categories.*')->join('category_books','books.id','=','category_books.book_id')->join('categories','category_books.category_id','=','categories.id')->where('categories.category_slug','=','serise-book')->orderBy('books.id', 'DESC')->take(8)->get();
+
+        $bestseller = Category::with('books')
+        ->where('category_slug','best-seller')->first();
+        $awardwiner = Category::with('books')
+        ->where('category_slug','award-wining')->first();
+        $shishuKishor = Category::with('books')
+        ->where('category_slug','shishu-kishor')->first();
+        $sienceFiction = Category::with('books')
+        ->where('category_slug','sience-fiction')->first();
+        $newCollection = Category::with('books')
+        ->where('category_slug','new-collection')->first();
+        $preeOrdeer = Category::with('books')
+        ->where('category_slug','pre-ordeer')->first();
+        $siries = Category::with('books')
+        ->where('category_slug','serise-book')->first();
+
+
+        $islamic = Category::with('books')
+        ->where('category_slug','islamic-book')->first();
+        $shomokalin = Category::with('books')
+        ->where('category_slug','shomokalin')->first();
+        $children = Category::with('books')
+        ->where('category_slug','shishu-children')->first();
+        $bmb = Category::with('books')
+        ->where('category_slug','bongobondhu')->first();
+        $otherreligious = Category::with('books')
+        ->where('category_slug','otherreligious')->first();
+        $translated  = Category::with('books')
+        ->where('category_slug','translated')->first();
+        $political  = Category::with('books')
+        ->where('category_slug','political')->first();
+        $bcs  = Category::with('books')
+        ->where('category_slug','bcs')->first();
+        $mtc  = Category::with('books')
+        ->where('category_slug','math-science-technology')->first();
+        $admition  = Category::with('books')
+        ->where('category_slug','admition')->first();
+
+
+        // need special caare
+        $lmbsbooks = Category::with('books')
+        ->where('category_slug','lmbsbooks')->first();
+
         $banners = Media::where('type',1)->where('status',1)->get();
 
+
         return view('index',compact(
+            'cartCollection',
             'categories',
             'authors',
-            'bestSellingBook',
-            'awardWiningBook',
-            'shishuKishorBook',
-            'sienceFictionBook',
-            'newCollectionBook',
-            'preeOrdeerBook',
-            'siriesBook',
-            'banners',
-            'cartCollection'
+            'bestseller',
+            'awardwiner',
+            'shishuKishor',
+            'sienceFiction',
+            'newCollection',
+            'preeOrdeer',
+            'siries',
+            'islamic',
+            'shomokalin',
+            'children',
+            'lmbsbooks',
+            'bmb',
+            'otherreligious',
+            'translated',
+            'political',
+            'bcs',
+            'mtc',
+            'admition',
+            'banners'
         ));
     }
 
