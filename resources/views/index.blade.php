@@ -59,6 +59,7 @@
             </div>
 
             <div class="">
+                <!-- First Slider-->
                 <div class=" homepagetabs-base book-slide">
                     <div id="tabs-first" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
                         <ul role="tablist"
@@ -71,25 +72,29 @@
                             </li>
                             <li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab"
                                 aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false"
-                                aria-expanded="false"><a href="#tabs-2" role="presentation" tabindex="-1"
-                                    class="ui-tabs-anchor" id="ui-id-2">নতুন কালেকশন</a></li>
+                                aria-expanded="false">
+                                <a href="#tabs-2" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">নতুন কালেকশন</a>
+                            </li>
                             <li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab"
                                 aria-controls="tabs-3" aria-labelledby="ui-id-3" aria-selected="false"
-                                aria-expanded="false"><a href="#tabs-3" role="presentation" tabindex="-1"
-                                    class="ui-tabs-anchor" id="ui-id-3">প্রি-অর্ডার</a></li>
+                                aria-expanded="false">
+                                <a href="#tabs-3" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-3">প্রি-অর্ডার</a>
+                            </li>
                         </ul>
                         <div class="tabsdetailsfull">
+
                             {{-- Best selling books --}}
                             <div id="tabs-1" class="tabs_inner_base ui-tabs-panel ui-corner-bottom ui-widget-content"
                                 aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="false">
+                                @if (!empty($bestseller))
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/categories/show/best-seller">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory',$bestseller->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($bestSellingBook as $book)
+                                                @foreach ($bestseller->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -103,22 +108,31 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
+
+
                             {{-- New Collection --}}
                             <div id="tabs-2" class="tabs_inner_base ui-tabs-panel ui-corner-bottom ui-widget-content"
-                                aria-labelledby="ui-id-2" role="tabpanel" style="display: none;" aria-hidden="true">
+                            aria-labelledby="ui-id-2" role="tabpanel" style="display: none;" aria-hidden="true">
+                                @if (!empty($newCollection))
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/view-books/0/new-arrivals">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory',$newCollection->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
-                                                @foreach ($newCollectionBook as $book)
-                                                    <div class="owl-item">
-                                                        @include('layouts.partials.bookItem')
-                                                    </div>
-                                                @endforeach
+                                                @forelse ($newCollection->books as $book)
+                                                <div class="owl-item">
+                                                    @include('layouts.partials.bookItem')
+                                                </div>
+                                                @empty
+                                                <div class="owl-item">
+                                                    No book In this category
+                                                </div>
+
+                                                @endforelse
                                             </div>
                                         </div>
                                         <div class="owl-nav"><button type="button" role="presentation"
@@ -128,19 +142,22 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
+
                             {{-- Pree Order --}}
                             <div id="tabs-3" class="tabs_inner_base ui-tabs-panel ui-corner-bottom ui-widget-content"
-                                aria-labelledby="ui-id-3" role="tabpanel" style="display: none;" aria-hidden="true">
+                            aria-labelledby="ui-id-3" role="tabpanel" style="display: none;" aria-hidden="true">
+                                @if (!empty($preeOrdeer))
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/view-books/3/coming-soon-preorder-now">See
+                                    <span class="view-more"><a href="{{route('showCategory',$preeOrdeer->category_slug)}}">See
                                             All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
-                                                @foreach ($preeOrdeerBook as $book)
+                                                @foreach ($preeOrdeer as $book)
                                                     <div class="owl-item">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -154,6 +171,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -164,6 +182,7 @@
                     <div id="tabs-second" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
                         <ul role="tablist"
                             class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+
                             <li role="tab" tabindex="0"
                                 class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
                                 aria-controls="tabs-5" aria-labelledby="ui-id-4" aria-selected="true"
@@ -184,14 +203,15 @@
                             {{-- Award Wining Books --}}
                             <div id="tabs-5" aria-labelledby="ui-id-4" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($awardwiner))
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $awardwiner->category)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($awardWiningBook as $book)
+                                                @foreach ($awardwiner->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -205,12 +225,14 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
 
                             {{-- Shishu kishor --}}
                             <div id="tabs-6" aria-labelledby="ui-id-5" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" style="display: none;"
                                 aria-hidden="true">
+                                @if (!empty($shishuKishor))
                                 <div class="books-summary">
                                     <span class="view-more"><a href="/view-books/5/award-winners">See All</a></span>
                                     <div class="clearfloat"></div>
@@ -218,7 +240,7 @@
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
-                                                @foreach ($shishuKishorBook as $book)
+                                                @foreach ($shishuKishor->books as $book)
                                                     <div class="owl-item">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -232,20 +254,23 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
 
                             {{-- Science Fiction --}}
                             <div id="tabs-7" aria-labelledby="ui-id-6" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" style="display: none;"
                                 aria-hidden="true">
+                                @if (!empty($sienceFiction))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/view-books/7/staff-picks">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory',$sienceFiction->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
-                                                @foreach ($sienceFictionBook as $book)
+                                                @foreach ($sienceFiction->books as $book)
                                                     <div class="owl-item">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -259,6 +284,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -298,17 +324,19 @@
                                     class="ui-tabs-anchor" id="ui-id-11">অনুবাদ</a></li>
                         </ul>
                         <div class="tabsdetailsfull">
-                            {{-- Award Wining Books --}}
+                            {{-- Islamic Book--}}
                             <div id="tabs-9" aria-labelledby="ui-id-9" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($islamic))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $islamic->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($awardWiningBook as $book)
+                                                @foreach ($islamic->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -322,20 +350,23 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
 
-                            {{-- Shishu kishor --}}
+                            {{-- Other religious --}}
                             <div id="tabs-10" aria-labelledby="ui-id-10" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" style="display: none;"
                                 aria-hidden="true">
+                                @if (!empty($otherreligious))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/view-books/5/award-winners">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $otherreligious->categpry_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
-                                                @foreach ($shishuKishorBook as $book)
+                                                @foreach ($otherreligious as $book)
                                                     <div class="owl-item">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -349,14 +380,17 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
 
-                            {{-- Science Fiction --}}
+                            {{-- Translation --}}
                             <div id="tabs-11" aria-labelledby="ui-id-11" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" style="display: none;"
                                 aria-hidden="true">
+                                @if (!empty($translated))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="/view-books/7/staff-picks">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $translated->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
@@ -376,6 +410,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -398,15 +433,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-12" aria-labelledby="ui-id-12" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($siries))
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="{{ route('showCategory', 'serise-book') }}">See
+                                    <span class="view-more"><a href="{{ route('showCategory', $series->category_slug) }}">See
                                             All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($siries->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -420,6 +456,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -481,14 +518,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-12" aria-labelledby="ui-id-12" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($bmb))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $bmb->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($bmb as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -502,6 +541,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -524,14 +564,14 @@
                             {{-- Series Books --}}
                             <div id="tabs-12" aria-labelledby="ui-id-12" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($lmbsbooks))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
-                                    <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($lmbsbooks as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -545,6 +585,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -562,17 +603,19 @@
                                     class="ui-tabs-anchor" id="ui-id-13">ছোটদের বই</a></li>
                         </ul>
                         <div class="tabsdetailsfull">
-                            {{-- Series Books --}}
+                            {{-- Children books --}}
                             <div id="tabs-13" aria-labelledby="ui-id-13" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($children))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory',$$children->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($children->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -586,10 +629,12 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
+
                 {{-- সমকালীন উপন্যাস --}}
                 <div class=" homepagetabs-base book-slide">
                     <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
@@ -605,14 +650,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-14" aria-labelledby="ui-id-14" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($shomokalin))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $shomokalin->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($shomokalin->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -626,6 +673,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -645,14 +693,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-15" aria-labelledby="ui-id-15" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($political))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $political->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($political->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -666,46 +716,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- বিসিএস এর জন্য --}}
-                <div class=" homepagetabs-base book-slide">
-                    <div id="" class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
-                        <ul role="tablist"
-                            class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-                            <li role="tab" tabindex="0"
-                                class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"
-                                aria-controls="tabs-16" aria-labelledby="ui-id-16" aria-selected="true"
-                                aria-expanded="true"><a href="#tabs-16" role="presentation" tabindex="-1"
-                                    class="ui-tabs-anchor" id="ui-id-16">বিসিএস এর জন্য</a></li>
-                        </ul>
-                        <div class="tabsdetailsfull">
-                            {{-- Series Books --}}
-                            <div id="tabs-16" aria-labelledby="ui-id-16" role="tabpanel"
-                                class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-                                <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
-                                    <div class="clearfloat"></div>
-                                    <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
-                                        <div class="owl-stage-outer">
-                                            <div class="owl-stage"
-                                                style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
-                                                    <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
-                                                        @include('layouts.partials.bookItem')
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        <div class="owl-nav"><button type="button" role="presentation"
-                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
-                                                type="button" role="presentation" class="owl-next disabled"><span
-                                                    aria-label="Next">›</span></button></div>
-                                        <div class="owl-dots disabled"></div>
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -725,14 +736,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-17" aria-labelledby="ui-id-17" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($bcs))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $bcs->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($bcs->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -746,6 +759,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -765,14 +779,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-18" aria-labelledby="ui-id-18" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($mtc))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $mtc->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($mts->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -786,6 +802,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -805,14 +822,16 @@
                             {{-- Series Books --}}
                             <div id="tabs-20" aria-labelledby="ui-id-20" role="tabpanel"
                                 class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+                                @if (!empty($admission))
+
                                 <div class="books-summary">
-                                    <span class="view-more"><a href="">See All</a></span>
+                                    <span class="view-more"><a href="{{route('showCategory', $admission->category_slug)}}">See All</a></span>
                                     <div class="clearfloat"></div>
                                     <div class="owl-two owl-carousel owl-theme books-itm-grid owl-loaded owl-drag">
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage"
                                                 style="transform: translate3d(-815px, 0px, 0px); transition: all 0.25s ease 0s; width: 1630px;">
-                                                @foreach ($siriesBook as $book)
+                                                @foreach ($admission->books as $book)
                                                     <div class="owl-item" style="width: 193.75px; margin-right: 10px;">
                                                         @include('layouts.partials.bookItem')
                                                     </div>
@@ -826,6 +845,7 @@
                                         <div class="owl-dots disabled"></div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
