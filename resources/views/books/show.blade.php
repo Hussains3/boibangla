@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div id="ctl00_phBody_ProductDetail_divaction" class="action">
-                    <div id="" class="btn-grp d-flex">
+                    <div id="" class="btn-grp d-flex justify-content-center">
                         <button class="btn-red" type="button" onclick="addToCart(this);"
                             data-book-id="{{ $bookDetail->id }}" data-book-name="{{ $bookDetail->book_name }}"
                             data-book-price="{{ $bookDetail->sale_price ? $bookDetail->sale_price : $bookDetail->regular_price }}"
@@ -150,184 +150,182 @@
         &nbsp;
     </div>
 
-    <div class="">
-        <div class="">
-            <div class="about-book" id="bookdetail">
-                <div class="title"> Book Details </div>
-                <div class="book-details">
-                    <div class="left">
-                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody>
-                                @if ($bookDetail->book_name)
-                                    <tr>
-                                        <td>Title: </td>
-                                        <td>{{ $bookDetail->book_name ?? '' }}</td>
-                                    </tr>
-                                @endif
+    <div class="px-1">
+        <div class="about-book" id="bookdetail">
+            <div class="title"> Book Details </div>
+            <div class="book-details">
+                <div class="left">
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            @if ($bookDetail->book_name)
+                                <tr>
+                                    <td>Title: </td>
+                                    <td>{{ $bookDetail->book_name ?? '' }}</td>
+                                </tr>
+                            @endif
 
 
-                                @if (count($bookDetail->author))
-                                    <tr>
-                                        <td>Autor: </td>
+                            @if (count($bookDetail->author))
+                                <tr>
+                                    <td>Autor: </td>
 
-                                        <td>
-                                            @forelse ($bookDetail->author as $author)
-                                                <a
-                                                    href="{{ route('cAuthorBooks', $author->slug) }}">{{ $author->name }}</a>
-                                            @empty
-                                                <a>Unknown</a>
-                                            @endforelse
-                                        </td>
-                                    </tr>
-                                @endif
+                                    <td>
+                                        @forelse ($bookDetail->author as $author)
+                                            <a
+                                                href="{{ route('cAuthorBooks', $author->slug) }}">{{ $author->name }}</a>
+                                        @empty
+                                            <a>Unknown</a>
+                                        @endforelse
+                                    </td>
+                                </tr>
+                            @endif
 
-                                @if ($bookDetail->editor)
-                                    <tr>
-                                        <td>Editor/Translator: </td>
+                            @if ($bookDetail->editor)
+                                <tr>
+                                    <td>Editor/Translator: </td>
 
-                                        <td>{{ $bookDetail->editor }}</td>
-                                    </tr>
-                                @endif
-                                @if ($bookDetail->edition)
-                                    <tr>
-                                        <td>Edition: </td>
-                                        <td>{{ $bookDetail->edition ?? 'Unknown' }}</td>
-                                    </tr>
-                                @endif
-                                @if ($bookDetail->isbn)
-                                    <tr>
-                                        <td>ISBN: </td>
-                                        <td>{{ $bookDetail->isbn ?? '' }}</td>
-                                    </tr>
-                                @endif
+                                    <td>{{ $bookDetail->editor }}</td>
+                                </tr>
+                            @endif
+                            @if ($bookDetail->edition)
+                                <tr>
+                                    <td>Edition: </td>
+                                    <td>{{ $bookDetail->edition ?? 'Unknown' }}</td>
+                                </tr>
+                            @endif
+                            @if ($bookDetail->isbn)
+                                <tr>
+                                    <td>ISBN: </td>
+                                    <td>{{ $bookDetail->isbn ?? '' }}</td>
+                                </tr>
+                            @endif
 
-                                @if (count($bookDetail->publication))
-                                    <tr>
-                                        <td>Publisher: </td>
-                                        <td>
-                                            @forelse ($bookDetail->publication as $publication)
-                                                <a href="{{ route('cPublicationBooks', $publication->slug) }}">
-                                                    {{ $publication->name }}</a>,
-                                            @empty
-                                                <a>Unknown</a>
-                                            @endforelse
-                                        </td>
-                                    </tr>
-                                @endif
-                                @if ($bookDetail->quality)
-                                    <tr>
-                                        <td>Quality: </td>
-                                        <td>{{ $bookDetail->quality ?? 'Unknown' }}</td>
-                                    </tr>
-                                @endif
+                            @if (count($bookDetail->publication))
+                                <tr>
+                                    <td>Publisher: </td>
+                                    <td>
+                                        @forelse ($bookDetail->publication as $publication)
+                                            <a href="{{ route('cPublicationBooks', $publication->slug) }}">
+                                                {{ $publication->name }}</a>,
+                                        @empty
+                                            <a>Unknown</a>
+                                        @endforelse
+                                    </td>
+                                </tr>
+                            @endif
+                            @if ($bookDetail->quality)
+                                <tr>
+                                    <td>Quality: </td>
+                                    <td>{{ $bookDetail->quality ?? 'Unknown' }}</td>
+                                </tr>
+                            @endif
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="right">
-                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody>
-                                @if ($bookDetail->number_of_pages)
-                                    <tr>
-                                        <td>No of Pages: </td>
-                                        <td>{{ $bookDetail->number_of_pages ?? 'Unknown' }}</td>
-                                    </tr>
-                                @endif
+                        </tbody>
+                    </table>
+                </div>
+                <div class="right">
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            @if ($bookDetail->number_of_pages)
+                                <tr>
+                                    <td>No of Pages: </td>
+                                    <td>{{ $bookDetail->number_of_pages ?? 'Unknown' }}</td>
+                                </tr>
+                            @endif
 
-                                @if ($bookDetail->languages)
-                                    <tr>
-                                        <td>Language: </td>
-                                        <td>
-                                            @forelse ($bookDetail->languages as $language)
-                                                {{ $language->name }},
-                                            @empty
-                                                <a>Unknown</a>
-                                            @endforelse
-                                        </td>
-                                    </tr>
-                                @endif
+                            @if ($bookDetail->languages)
+                                <tr>
+                                    <td>Language: </td>
+                                    <td>
+                                        @forelse ($bookDetail->languages as $language)
+                                            {{ $language->name }},
+                                        @empty
+                                            <a>Unknown</a>
+                                        @endforelse
+                                    </td>
+                                </tr>
+                            @endif
 
 
-                                @if ($bookDetail->countries)
-                                    <tr>
-                                        <td>Country: </td>
-                                        <td>
-                                            @forelse ($bookDetail->countries as $country)
-                                                {{ $country->name == 'Bangladesh' ? 'বাংলাদেশ' : $country->name }}
-                                            @empty
-                                                <a>Unknown</a>
-                                            @endforelse
-                                        </td>
-                                    </tr>
-                                @endif
+                            @if ($bookDetail->countries)
+                                <tr>
+                                    <td>Country: </td>
+                                    <td>
+                                        @forelse ($bookDetail->countries as $country)
+                                            {{ $country->name == 'Bangladesh' ? 'বাংলাদেশ' : $country->name }}
+                                        @empty
+                                            <a>Unknown</a>
+                                        @endforelse
+                                    </td>
+                                </tr>
+                            @endif
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="about-book" id="aboutbook">
-                <div class="title">
-                    Book Summary
-                    <input type="submit" name="" value="Hide Detail" onclick="return ShowHideDesc();"
-                        id="Desc_btnColExp">
-                </div>
-                <div>
-                    <span id="LongDesc">
-                        {!! $bookDetail->summary ?? 'Summary Not avilable' !!}
-                    </span>
-                </div>
+        </div>
+        <div class="about-book" id="aboutbook">
+            <div class="title">
+                Book Summary
+                <input type="submit" name="" value="Hide Detail" onclick="return ShowHideDesc();"
+                    id="Desc_btnColExp">
             </div>
+            <div>
+                <span id="LongDesc">
+                    {!! $bookDetail->summary ?? 'Summary Not avilable' !!}
+                </span>
+            </div>
+        </div>
 
-            <div class="about-book">
-                <div class="title" id="review">User Reviews</div>
-                <p style="margin:10px 0 0 0">
-                    @guest <a href="">Write a Review</a> @endguest
-                    @auth <button id="reviewformtoggle" class="btn-red-micro pointer">Write a Review</button> @endauth
-                    on this book
-                    <strong>{{ $bookDetail->book_name }}</strong>
-                </p>
-                @auth
-                    <div class="d-none p-1 mt-1" id="reviewform">
-                        <form action="{{route('rateBook.store')}}" method="POST" id="rateBook">
-                            @csrf
-                            @method('post')
-                            <div class="formdiv">
-                                <div class="stardiv d-flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st1" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st2" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st3" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st4" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st5" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
-                                </div>
-                                <input type="hidden" name="ratinNumber" value="" id="ratinNumber">
-                                <input type="hidden" name="book_id" value="{{$bookDetail->id}}" id="ratinNumber">
-                                <label for="name" class="d-block w-100">Write Review<span class="themecolor">*</span></label>
-                                <textarea name="reviewDescription" rows="4"  id="reviewDescription" class="new-txt-box w-100 mb-1"
-                                    placeholder="Length should not be more the 8000 characters"></textarea>
+        <div class="about-book">
+            <div class="title" id="review">User Reviews</div>
+            <p style="margin:10px 0 0 0">
+                @guest <a href="">Write a Review</a> @endguest
+                @auth <button id="reviewformtoggle" class="btn-red-micro pointer">Write a Review</button> @endauth
+                on this book
+                <strong>{{ $bookDetail->book_name }}</strong>
+            </p>
+            @auth
+                <div class="d-none p-1 mt-1" id="reviewform">
+                    <form action="{{route('rateBook.store')}}" method="POST" id="rateBook">
+                        @csrf
+                        @method('post')
+                        <div class="formdiv">
+                            <div class="stardiv d-flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st1" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st2" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st3" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st4" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path id="st5" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
                             </div>
-                            <div class="reviewsubmitdiv">
-                                <input type="submit" name="submitbtn" value="Submit" id="reviewsubmitbtn" class="btn-red-micro">
-                            </div>
-                        </form>
-                    </div>
-                @endauth
-
-                <div class="existingReviews mt-1">
-                    @foreach ($reviews as $review)
-                        <div class="eachreview p-1">
-                            <p><strong>{{$review->name}}</strong></p>
-                            <div class="">
-                                <ul class="d-flex list-unstyled">
-                                    @for ($i = 0; $i < $review->rating; $i++)
-                                    <li><img src="/images/dynamic/star-red.gif" id="" alt="Red Star"></li>
-                                    @endfor
-                                </ul>
-                            </div>
-                            <p>{{$review->remark}}</p>
+                            <input type="hidden" name="ratinNumber" value="" id="ratinNumber">
+                            <input type="hidden" name="book_id" value="{{$bookDetail->id}}" id="ratinNumber">
+                            <label for="name" class="d-block w-100">Write Review<span class="themecolor">*</span></label>
+                            <textarea name="reviewDescription" rows="4"  id="reviewDescription" class="new-txt-box w-100 mb-1"
+                                placeholder="Length should not be more the 8000 characters"></textarea>
                         </div>
-                    @endforeach
+                        <div class="reviewsubmitdiv">
+                            <input type="submit" name="submitbtn" value="Submit" id="reviewsubmitbtn" class="btn-red-micro">
+                        </div>
+                    </form>
                 </div>
+            @endauth
+
+            <div class="existingReviews mt-1">
+                @foreach ($reviews as $review)
+                    <div class="eachreview p-1">
+                        <p><strong>{{$review->name}}</strong></p>
+                        <div class="">
+                            <ul class="d-flex list-unstyled">
+                                @for ($i = 0; $i < $review->rating; $i++)
+                                <li><img src="/images/dynamic/star-red.gif" id="" alt="Red Star"></li>
+                                @endfor
+                            </ul>
+                        </div>
+                        <p>{{$review->remark}}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -340,7 +338,7 @@
                     href="{{ route('showCategory', $bookCategory->category_slug) }}">View More</a></span></div>
         <div class="top-selling">
             <div class="ts-grid">
-                @forelse ($simillarBooks as $book)
+                @forelse ($bookCategory->books as $book)
                     @include('layouts.partials.bookItem')
                 @empty
 

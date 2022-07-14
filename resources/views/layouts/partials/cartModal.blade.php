@@ -21,7 +21,7 @@
                     <div class="p-1">
                         <div class="shopping-top">
                             <div id="BookCart_lvCart_divCartMsg" class="shopping-msg" style="display:none;"></div>
-                            <div class=" " id="cart_table">
+                            <div class=" " id="cart_table" style="overflow: scroll;">
 
 
 

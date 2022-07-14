@@ -516,16 +516,18 @@ class BookController extends Controller
 
         // only for test
 
-        
+
         // only for test
 
         $bookTagNames = [];
         $bookDetail = Book::getBookDetail($bookSlug);
-        $bookCategory= $bookDetail->categories->first();
-        $simillarBooks = Book::select('books.*','category_books.*','categories.*')
-        ->join('category_books','books.id','=','category_books.book_id')
-        ->join('categories','category_books.category_id','=','categories.id')
-        ->where('categories.category_slug','=',$bookCategory->category_slug)->take(7)->get();
+        // $bookCategory= $bookDetail->categories->first()->id;
+        $bookCategory= Category::with('books')->where('id',$bookDetail->categories->first()->id)->first();
+
+        // $simillarBooks = Book::select('books.*','category_books.*','categories.*')
+        // ->join('category_books','books.id','=','category_books.book_id')
+        // ->join('categories','category_books.category_id','=','categories.id')
+        // ->where('categories.category_slug','=',$bookCategory->category_slug)->take(7)->get();
 
         $bookTaggedIds = BookTag::select('tag_ids')
             ->join('books','book_tags.book_id','books.id')
@@ -565,7 +567,7 @@ class BookController extends Controller
                 'bookCategory'=>$bookCategory,
                 'bookTagNames' => $bookTagNames,
                 'socialSharing' => $socialSharing,
-                'simillarBooks' => $simillarBooks,
+                // 'simillarBooks' => $simillarBooks,
                 'wishlistsbooks' => $wishlistsbooks,
                 'mywishlist' => $mywishlist,
                 'reviews' => $reviews
