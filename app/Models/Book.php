@@ -113,6 +113,7 @@ class Book extends Model
             'regular_price',
             'sale_price',
             'stock',
+            'quality',
             'book_image',
             'book_image_1',
             'book_image_2',

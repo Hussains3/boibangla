@@ -58,7 +58,7 @@
 
 
                     <div class="customer-form">
-                        <div class="name-fild">
+                        <div class="name-fild mandatory">
                             Contact:
                         </div>
                         <div class="input-fild">
@@ -138,7 +138,7 @@
 
                     <div class="customer-form">
                         <div class="name-fild mandatory">
-                            State:
+                            District:
                         </div>
                         <div class="input-fild mandatory">
                             <input name="state" type="text"  id="state" autocomplete="off">
@@ -167,7 +167,7 @@
 
                     <div class="customer-form">
                         <div class="name-fild mandatory">
-                            Pin/Zip Code:
+                            Postal/Zip Code:
                         </div>
                         <div class="input-fild">
                             <input name="postal_zip_code" type="text"  id="postal_zip_code" autocomplete="off">

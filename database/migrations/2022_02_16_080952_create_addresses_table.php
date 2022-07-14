@@ -25,7 +25,7 @@ class CreateAddressesTable extends Migration
             $table->string('street_address');
             $table->string('state',100);
             $table->string('town_city',100);
-            $table->string('postal_code',100);
+            $table->string('postal_code',100)->nullable();
             $table->unsignedTinyInteger('address_type')->default(1)->comment('1=>Home,2=>Office,3=>Others');
             $table->timestamps();
         });

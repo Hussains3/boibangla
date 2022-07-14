@@ -193,9 +193,11 @@ function setCartPageData(response) {
         }
 
         var deliveryCharge = 'Free';
-        if (response.data.delivery_charge != null){
+        if (response.data.delivery_charge != null && response.data.total < 1500){
+
             deliveryCharge = '৳'+response.data.delivery_charge;
             $(".cart_total_amount").text('৳' + Math.round(response.data.total+parseFloat(response.data.delivery_charge)));
+            
         }else{
             $(".cart_total_amount").text('৳' + Math.round(response.data.total));
         }
